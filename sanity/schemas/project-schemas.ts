@@ -19,14 +19,28 @@ export const Blogs = {
       type: "slug",
       options: {
         source: "title",
-      }
+      },
     },
     {
       name: "author",
       title: "Author",
       type: "reference",
-      to: [{type: "author"}]
-
+      to: [{ type: "author" }],
+    },
+    {
+      name: "image",
+      title: "Image",
+      type: "image",
+      otpions: {
+        hotspot: true,
+      },
+      fields: [
+        {
+          name: "alt",
+          title: "Alt text",
+          type: "string",
+        },
+      ],
     },
     {
       name: "content",
@@ -36,7 +50,6 @@ export const Blogs = {
     },
   ],
 };
-
 
 export const Author = {
   name: "author",
