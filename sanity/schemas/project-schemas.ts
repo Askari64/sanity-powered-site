@@ -4,14 +4,29 @@ export const Blogs = {
   type: "document",
   fields: [
     {
-      name: "name",
-      title: "Name",
+      name: "title",
+      title: "Title",
       type: "string",
     },
     {
       name: "date",
       title: "Date",
       type: "date",
+    },
+    {
+      name: "slug",
+      title: "Slug",
+      type: "slug",
+      options: {
+        source: "title",
+      }
+    },
+    {
+      name: "author",
+      title: "Author",
+      type: "reference",
+      to: [{type: "author"}]
+
     },
     {
       name: "content",
