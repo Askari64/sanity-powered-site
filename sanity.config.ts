@@ -11,5 +11,5 @@ export const sanityConfig = defineConfig({
   dataset,
   title: 'Test Website',
   plugins: [structureTool()],
-  schema: {types: schema}, // we will make schema in next commits
+  schema: {types: schema},
 })
