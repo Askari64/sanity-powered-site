@@ -31,7 +31,7 @@ export const Blogs = {
       name: "image",
       title: "Image",
       type: "image",
-      otpions: {
+      options: {
         hotspot: true,
       },
       fields: [
@@ -66,7 +66,7 @@ export const Author = {
       title: "Image",
       type: "image",
       options: {
-        hotspot: "true",
+        hotspot: true,
       },
       fields: [
         {
