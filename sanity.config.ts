@@ -10,6 +10,7 @@ export const sanityConfig = defineConfig({
   projectId,
   dataset,
   title: 'Test Website',
+  apiVersion: '2025-03-14' ,
   plugins: [structureTool()],
   schema: {types: schema},
 })

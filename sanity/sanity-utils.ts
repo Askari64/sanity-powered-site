@@ -8,6 +8,7 @@ export async function getBlogs() {
     const client = createClient({
         projectId,
         dataset,
+        apiVersion: '2025-03-14'
     })
 
     return client.fetch(
