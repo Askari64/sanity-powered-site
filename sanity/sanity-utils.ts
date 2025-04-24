@@ -1,9 +1,10 @@
 import { createClient, groq } from "next-sanity";
+import { BlogInterface } from "../interfaces/type-interfaces";
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!;
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET!;
 
-export async function getBlogs() {
+export async function getBlogs(): Promise<BlogInterface[]> {
   const client = createClient({
     projectId,
     dataset,
@@ -16,7 +17,9 @@ export async function getBlogs() {
         _id,
         _createdAt,
         title,
-        author,
+        author->{
+        name,
+        "image": image.asset -> url},
         "slug": slug.current,
         "image": image.asset -> url,
         content
