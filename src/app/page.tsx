@@ -1,4 +1,5 @@
 import Image from "next/image";
+import {PortableText} from '@portabletext/react'
 import { getBlogs } from "../../sanity/sanity-utils";
 
 export default async function Home() {
@@ -28,7 +29,7 @@ export default async function Home() {
             <p>
               Author: <span>{blog.author.name}</span>
             </p>
-            <h3></h3>
+            <PortableText value={blog.content}/>
           </div>
         ))}
       </div>
