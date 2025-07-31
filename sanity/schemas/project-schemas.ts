@@ -1,3 +1,6 @@
+import { Rule } from 'sanity';
+
+
 export const Blogs = {
   name: "blogs",
   title: "Blogs",
@@ -78,3 +81,46 @@ export const Author = {
     },
   ],
 };
+
+export const User = {
+  name: "user",
+  title: "User",
+  type: "document",
+  fields: [
+    {
+      name: "userName",
+      title: "User Name",
+      type: "string",
+      validation: (rule: Rule) => rule.required()
+    },
+     {
+      name: "image",
+      title: "Image",
+      type: "image",
+      validation: (rule: Rule) => rule.required(),
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        {
+          name: "alt",
+          title: "Alt text",
+          type: "string",
+          
+        },
+      ],
+    },
+    {
+      name: "description",
+      title: "Short Description",
+      type: "text",
+      validation: (rule: Rule) => rule.required(),
+    },
+    {
+      name:'about',
+      title:'About',
+      type: 'text',
+      validation: (rule: Rule) => rule.required(),
+    },
+  ]
+}

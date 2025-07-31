@@ -1,5 +1,5 @@
-import {Blogs, Author} from "./project-schemas";
+import {Blogs, Author, User} from "./project-schemas";
 
-const schema = [Blogs,Author];
+const schema = [Blogs,Author,User];
 
 export default schema;
