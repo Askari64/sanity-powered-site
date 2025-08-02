@@ -1,5 +1,4 @@
-import { Rule } from 'sanity';
-
+import { defineType, defineField  } from 'sanity';
 
 export const Blogs = {
   name: "blogs",
@@ -82,45 +81,103 @@ export const Author = {
   ],
 };
 
-export const User = {
+
+export const User = defineType({
   name: "user",
   title: "User",
   type: "document",
   fields: [
-    {
+    defineField({
       name: "userName",
       title: "User Name",
       type: "string",
-      validation: (rule: Rule) => rule.required()
-    },
-     {
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: "image",
       title: "Image",
       type: "image",
-      validation: (rule: Rule) => rule.required(),
       options: {
         hotspot: true,
       },
       fields: [
-        {
+        defineField({
           name: "alt",
           title: "Alt text",
           type: "string",
-          
-        },
+          validation: (rule) => rule.required(),
+        }),
       ],
-    },
-    {
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: "description",
       title: "Short Description",
       type: "text",
-      validation: (rule: Rule) => rule.required(),
-    },
-    {
-      name:'about',
-      title:'About',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'about',
+      title: 'About',
       type: 'text',
-      validation: (rule: Rule) => rule.required(),
-    },
-  ]
-}
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'workExperiences',
+      title: 'Work Experiences',
+      type: 'array',
+      of: [{ type: 'workExperience' }],
+      validation: (rule) => rule.required().min(1),
+    })
+  ],
+})
+
+export const WorkExperience = defineType({
+  name: 'workExperience',
+  title: 'Work Experience',
+  type: 'object',
+  fields: [
+    defineField({
+      name: 'company',
+      title: 'Company',
+      type: 'string',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'role',
+      title: 'Role',
+      type: 'string',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'startDate',
+      title: 'Start Date',
+      type: 'date',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'endDate',
+      title: 'End Date',
+      type: 'date',
+      validation: (rule) =>
+        rule.custom((endDate, context) => {
+           const parent = context.parent as { startDate?: string };
+           const startDate = parent.startDate;
+          if (startDate && endDate && endDate < startDate) {
+            return 'End date cannot be before start date';
+          }
+          return true;
+        }),
+    }),
+    defineField({
+      name: 'description',
+      title: 'Description',
+      type: 'text',
+    }),
+    defineField({
+      name: "companyLogo",
+      title: "Company Logo",
+      type: "url"
+    }),
+  ],
+});
